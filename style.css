@@ -1,0 +1,15 @@
+background canvas {
+    display: block;
+    margin: auto;
+    color: blue;
+    background-color: transparent;
+    box-shadow: gold 0px 0px 10px 5px;
+    user-select: none;
+    gap: 10px;
+    height: auto;
+    box-sizing: border-box;
+    content-visibility: auto;
+    animation-delay: 0s;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
