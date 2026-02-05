@@ -1,17 +1,43 @@
-let canvas = document.createElement("canvas");
+/**
+ * Particle Animation Background
+ * Creates an animated background with floating golden particles
+ * that move smoothly across the canvas
+ */
+
+// Create and append canvas element to the body
+const canvas = document.createElement("canvas");
 document.body.appendChild(canvas);
 
+// Get 2D rendering context
 const ctx = canvas.getContext("2d");
 
+/**
+ * Resize canvas to match window dimensions
+ * Ensures canvas always fills the viewport
+ */
 function resize() {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 }
-resize();
-addEventListener("resize", resize);
 
+// Initialize canvas size
+resize();
+
+// Update canvas size when window is resized
+window.addEventListener("resize", resize);
+
+// Configuration constants
+const PARTICLE_COUNT = 80;
+const PARTICLE_COLOR = "rgba(255, 215, 0, 0.7)";
+const SHADOW_COLOR = "gold";
+const SHADOW_BLUR = 20;
+
+/**
+ * Particle configuration
+ * Each particle has position (x, y), size, and velocity (dx, dy)
+ */
 const particles = [];
-for (let i = 0; i < 80; i++) {
+for (let i = 0; i < PARTICLE_COUNT; i++) {
     particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -21,25 +47,40 @@ for (let i = 0; i < 80; i++) {
     });
 }
 
+/**
+ * Animation loop
+ * Updates particle positions and renders them on the canvas
+ */
 function draw() {
+    // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    particles.forEach(p => {
-        p.x += p.dx;
-        p.y += p.dy;
+    // Update and draw each particle
+    particles.forEach(particle => {
+        // Update position
+        particle.x += particle.dx;
+        particle.y += particle.dy;
 
-        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+        // Bounce off edges
+        if (particle.x < 0 || particle.x > canvas.width) {
+            particle.dx *= -1;
+        }
+        if (particle.y < 0 || particle.y > canvas.height) {
+            particle.dy *= -1;
+        }
 
+        // Draw particle
         ctx.beginPath();
-        ctx.fillStyle = "rgba(255,215,0,.7)";
-        ctx.shadowColor = "gold";
-        ctx.shadowBlur = 20;
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = PARTICLE_COLOR;
+        ctx.shadowColor = SHADOW_COLOR;
+        ctx.shadowBlur = SHADOW_BLUR;
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
     });
 
+    // Request next animation frame
     requestAnimationFrame(draw);
 }
 
+// Start animation
 draw();
