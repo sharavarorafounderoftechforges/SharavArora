@@ -198,6 +198,7 @@ a:focus {
 
 .social-links {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
     margin: 20px 0;
@@ -363,9 +364,9 @@ canvas {
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration: 0s !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition-duration: 0s !important;
     }
 
     canvas {
