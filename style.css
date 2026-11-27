@@ -1,32 +1,271 @@
-/* GLOBAL PAGE STYLING */
+/* =============================================
+   CSS VARIABLES FOR THEMING
+   ============================================= */
+:root {
+    --primary-color: #0033cc;
+    --accent-color: gold;
+    --text-color: #000;
+    --bg-color: #ffffff;
+    --popup-border: 2px solid gold;
+    --popup-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    --transition-speed: 0.3s;
+    --border-radius: 10px;
+    --max-content-width: 900px;
+}
+
+/* =============================================
+   GLOBAL PAGE STYLING
+   ============================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background: #ffffff;
-    font-family: Arial, sans-serif;
+    background: var(--bg-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif;
     padding: 20px;
-    color: #000;
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
 }
 
-/* FIXED POPUP STYLE */
+/* =============================================
+   LAYOUT SECTIONS
+   ============================================= */
+section {
+    max-width: var(--max-content-width);
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+}
+
+header {
+    text-align: center;
+    max-width: var(--max-content-width);
+    margin: 20px auto;
+    padding: 30px 20px;
+}
+
+/* =============================================
+   POPUP/CALLOUT BOXES
+   ============================================= */
 .popup {
-    padding: 15px;
-    border: 2px solid gold;
+    padding: 20px;
+    border: var(--popup-border);
     margin: 20px 0;
-    box-shadow: 0 0 10px gold;
-    border-radius: 10px;
+    box-shadow: var(--popup-shadow);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.95);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
 
-/* HEADINGS */
-h1, h2, h6 {
-    color: #0033cc;
+.popup:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 25px rgba(255, 215, 0, 0.6);
 }
 
-/* LINKS */
-a {
-    color: blue;
+.popup strong {
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+/* =============================================
+   CALL TO ACTION BUTTON
+   ============================================= */
+.cta-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: var(--accent-color);
+    color: var(--text-color);
+    text-decoration: none;
     font-weight: bold;
+    border-radius: 5px;
+    transition: all var(--transition-speed);
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
 }
 
-/* CANVAS BACKGROUND */
+.cta-button:hover,
+.cta-button:focus {
+    background: #ffd700;
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* =============================================
+   TYPOGRAPHY
+   ============================================= */
+h1 {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 51, 204, 0.1);
+}
+
+h2 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 15px;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: var(--primary-color);
+    font-size: 1.3em;
+    margin: 15px 0 10px;
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.product-highlight {
+    background: rgba(255, 215, 0, 0.1);
+    padding: 15px;
+    border-left: 4px solid var(--accent-color);
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+/* =============================================
+   LINKS
+   ============================================= */
+a {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: underline;
+    transition: color var(--transition-speed), transform var(--transition-speed);
+    display: inline-block;
+}
+
+a:hover,
+a:focus {
+    color: #0055ff;
+    transform: translateX(3px);
+    outline: 2px solid transparent;
+}
+
+a:focus {
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 3px;
+}
+
+.waitlist-link {
+    background: linear-gradient(135deg, #0033cc, #0055ff);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all var(--transition-speed);
+}
+
+.waitlist-link:hover,
+.waitlist-link:focus {
+    background: linear-gradient(135deg, #0055ff, #0077ff);
+    box-shadow: 0 4px 15px rgba(0, 51, 204, 0.3);
+    transform: translateY(-2px);
+}
+
+/* =============================================
+   LISTS
+   ============================================= */
+.purposes-list,
+.social-links {
+    list-style: none;
+    padding: 0;
+}
+
+.purposes-list li {
+    padding: 10px;
+    margin: 8px 0;
+    background: rgba(0, 51, 204, 0.05);
+    border-left: 4px solid var(--accent-color);
+    border-radius: 5px;
+    transition: all var(--transition-speed);
+}
+
+.purposes-list li:hover {
+    background: rgba(0, 51, 204, 0.1);
+    transform: translateX(5px);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.social-links li {
+    flex: 1;
+    min-width: 200px;
+}
+
+.social-links a {
+    display: block;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+    border: 2px solid var(--accent-color);
+    border-radius: var(--border-radius);
+    text-align: center;
+    text-decoration: none;
+    transition: all var(--transition-speed);
+}
+
+.social-links a:hover,
+.social-links a:focus {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+}
+
+/* =============================================
+   CONTACT SECTION
+   ============================================= */
+.contact-info {
+    background: rgba(0, 51, 204, 0.05);
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+footer {
+    text-align: center;
+    max-width: var(--max-content-width);
+    margin: 40px auto 20px;
+    padding: 20px;
+    border-top: 2px solid var(--accent-color);
+    color: #666;
+}
+
+footer p {
+    margin: 8px 0;
+}
+
+.update-note,
+.social-note {
+    font-style: italic;
+    color: #666;
+    font-size: 0.95em;
+}
+
+/* =============================================
+   CANVAS BACKGROUND ANIMATION
+   ============================================= */
 canvas {
     position: fixed;
     inset: 0;
@@ -35,4 +274,115 @@ canvas {
     z-index: -1;
     pointer-events: none;
     background-color: transparent;
+}
+
+/* =============================================
+   RESPONSIVE DESIGN - MOBILE
+   ============================================= */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    section {
+        padding: 15px;
+        margin: 20px auto;
+    }
+
+    .popup {
+        padding: 15px;
+    }
+
+    .social-links {
+        flex-direction: column;
+    }
+
+    .social-links li {
+        min-width: 100%;
+    }
+
+    .cta-button {
+        display: block;
+        text-align: center;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    section {
+        padding: 10px;
+    }
+}
+
+/* =============================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================= */
+/* Skip to main content link for screen readers */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Improve focus visibility */
+*:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0s !important;
+    }
+
+    canvas {
+        display: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --popup-border: 3px solid gold;
+        --popup-shadow: 0 0 0 2px black;
+    }
+
+    a {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+    }
 }
